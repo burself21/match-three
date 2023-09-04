@@ -1,44 +1,54 @@
 const root_path = "";
+import angular from '/angular.png';
+import backbone from '/backbone.png';
+import ember from '/ember.svg';
+import foundation from '/foundation.svg';
+import jquery from '/jquery.png';
+import preact from '/preact.png';
+import react from '/react.png';
+import semantic from '/semantic.jpg';
+import svelte from '/svelte.png';
+import vue from '/vue.svg';
 
 const cards = [
     {
-        uri: `${root_path}/angular.png`,
+        uri: angular,
         name: "Angular"
     },
     {
-        uri: `${root_path}/backbone.png`,
+        uri: backbone,
         name: "Backbone"
     },
     {
-        uri: `${root_path}/ember.svg`,
+        uri: ember,
         name: "Ember"
     },
     {
-        uri: `${root_path}/foundation.svg`,
+        uri: foundation,
         name: "Foundation"
     },
     {
-        uri: `${root_path}/jquery.png`,
+        uri: jquery,
         name: "Jquery"
     },
     {
-        uri: `${root_path}/preact.png`,
+        uri: preact,
         name: "Preact"
     },
     {
-        uri: `${root_path}/react.png`,
+        uri: react,
         name: "React"
     },
     {
-        uri: `${root_path}/semantic.jpg`,
+        uri: semantic,
         name: "Semantic"
     },
     {
-        uri: `${root_path}/svelte.png`,
+        uri: svelte,
         name: "Svelte"
     },
     {
-        uri: `${root_path}/vue.svg`,
+        uri: vue,
         name: "Vue"
     },
 ]
