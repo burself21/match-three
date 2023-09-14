@@ -109,7 +109,6 @@
 </template>
 
 <style>
-
     body {
         margin: 0;
     }
@@ -117,7 +116,8 @@
     #container {
         background-color: #272744;
         height: fit-content;
-        min-height: calc(100vh - 50px);
+        min-height: 100vh;
+        box-sizing: border-box;
         padding-top: 50px;
         padding-bottom: 30px;
     }

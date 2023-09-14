@@ -105,11 +105,17 @@
     flex-direction: column;
     border-radius: calc(13px + 0.625vw); /*15px*25px;*/
     padding: 0 calc(8px + 0.625vw);/*20*10px; */
-    border: /*5*/3px solid black;
-    outline: /*7*/5px solid darkgray;
+    border: 3px solid black;
+    box-shadow: 0 0 0 5px darkgray;
     width: calc(183px + 11.5625vw);
   }
 
+  @media all and (min-width:641px) {
+    .modal {
+        border: calc(2px + 0.15625vw) solid black;
+        box-shadow: 0 0 0 calc(4px + 0.15625vw) darkgray;
+    }
+  }
   /*@media all and (min-width:1024px) {
     .modal {
         width: 21vw;
@@ -137,12 +143,17 @@
     color: #272744;
     font-weight: 400;
     font-size: calc(26px + 0.625vw);
+
     padding: calc(9px + 0.3125vw) 0; /*15*10px 0;*/
 
     justify-content: space-between;
 
     height: calc(31px + 0.625vw);
 
+  }
+
+  .modal-header > span {
+    font-family: 'Times New Roman', Times, serif;
   }
 
   .modal-footer {
