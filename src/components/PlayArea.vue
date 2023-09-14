@@ -53,10 +53,6 @@
         return newCards
     }
 
-    const props = defineProps({
-        appArea: Number,
-    })
-
     // messages we can emit to parent (App)
     const emit = defineEmits(['gameOver']);
 
@@ -118,7 +114,6 @@
         totalCardsSelected.value += 1;
         totalCardsSelectedTrue.value += 1;
         numCardsRemaining.value -= 1;
-        console.log(numCardsRemaining.value);
         selectedCardsByType[cardType].push(id);
         
         // stop card from covering other cards

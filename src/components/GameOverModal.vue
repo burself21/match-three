@@ -85,6 +85,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    z-index: 999;
   }
 
   .modal {
@@ -114,8 +115,8 @@
   .modal-body {
     position: relative;
     padding-bottom: 10px;
-    padding-top: 20px;
-    font-size: 46px;
+    padding-top: calc(8px + 0.625vw);
+    font-size: calc(38.8px + 0.375vw);
     align-items: center;
     text-align: center;
   }

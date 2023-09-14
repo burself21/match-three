@@ -5,9 +5,18 @@
 
     import { ref, computed } from 'vue';
 
-    const appArea = 0.5;
+    //const appArea = 0.5;
 
     const language = ref("English");
+    
+    const gameName = computed(() => {
+        return language.value === "English" ? "Match Three" : "消消爆";
+    })
+
+    const nameSpacing = computed(() => {
+        return language.value === "English" ? "0" : "2px";
+    })
+
     const toggleColor1 = computed(() => {
         return language.value === "English" ? "#494d7e" : "#fff";
     })
@@ -22,10 +31,10 @@
     const hasWon = ref(false);
 
     const toggleLanguage = () => {
-        if (language === "English")
-            language = "Chinese"
+        if (language.value === "English")
+            language.value = "Chinese"
         else
-            language = "English"
+            language.value = "English"
     }
 
     const initiateGameOver = (won) => {
@@ -60,7 +69,7 @@
     <div id="container">
         <div id="header_area">
             <div id="header_title">
-                Match Three
+                {{ gameName }}
             </div>
             <div id="header_language">
                 <div class="switch">
@@ -79,7 +88,7 @@
             <div id="main">
                 <PlayArea 
                     ref="playAreaRef"
-                    :appArea="appArea" @gameOver="initiateGameOver" 
+                    @gameOver="initiateGameOver" 
                 />
                 <div id="cardholder"></div>
             </div>
@@ -107,14 +116,13 @@
 
     #container {
         background-color: #272744;
-        height: 96vh;
-        padding-top: 4vh;
+        height: fit-content;
+        min-height: calc(100vh - 50px);
+        padding-top: 50px;
+        padding-bottom: 30px;
     }
     
     #header_area {
-        height: 10vh;
-        width: calc(37.5vw + 9px + 15px);
-        margin-left: calc(37.5vw);
         display: flex;
         flex-direction: row;
         justify-content: space-between;
@@ -122,12 +130,10 @@
     }
 
     #header_title {
-        border-radius: 12px 12px 0px 0px;
+        
         background-color: #494d7e;/*#8b6d9c; /*#4AAE9B;/*#add8e6;*/
         height: 100%;
-        width: 25vw;
         text-align: center;
-        font-size: 3.5vw;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -135,7 +141,7 @@
         border: 5px solid black;
         border-bottom: 0;
         box-sizing: border-box;
-        color: rgb(250, 198, 206);
+        color: #fac6ce;
         user-select: none;
     }
 
@@ -147,19 +153,133 @@
         font-family: sans-serif;
     }
 
-    
-    #header_language > div {
-        height: 2.1vw;
-    }
 
     #wrapper {
-        width: calc(v-bind('appArea') * 100vw);
-        margin-left: calc(v-bind('1 - appArea') * 50vw - 20px - 5px - 4px);
+        /*width: calc(v-bind('appArea') * 100vw);
+        margin-left: calc(v-bind('1 - appArea') * 50vw - 20px - 5px - 4px);*/
         height: fit-content;
         padding: 20px 20px;
         border: 4px solid black;
         outline: 5px solid #8b6d9c;
         background-color: #f0f3eb;
+    }  
+
+    /* Phones and small tablets */
+    @media all and (max-width:640px) {
+        #wrapper {
+            outline: none;
+        }
+
+        #header_area {
+            margin-bottom: 0;
+            width: 100%;
+            height: 60px;
+        }
+
+        #header_title {
+            border-radius: 0;
+            border-right: none;
+            width: 60%;
+            box-sizing: border-box;
+            font-size: calc(20px + 1.25vw);
+            font-weight: 600;
+            letter-spacing: v-bind('nameSpacing');
+        }
+        .switch {
+            width: 40vw;
+            height: 100%;
+            box-sizing: border-box;
+            border: 5px solid black;
+            border-bottom: none;
+        }
+        .english {
+            top: 13px;
+            font-size: 28px;
+        }
+
+        .chinese {
+            top: 10px;
+            font-size: 25px;
+        }
+    }
+
+    @media all and (max-width:450px) {
+        .english {
+            top: calc(16.4615385px - 0.769230769vw); /*14px;*/
+            font-size: calc(10.6923px + 3.846153846vw); /*23px;*/
+        }
+
+        .chinese {
+            top: calc(17px - 1.538461538vw);
+            font-size: calc(11.15385px + 3.076923076vw);
+        }
+    }
+
+    /* Tablet and smaller laptops */
+    @media all and (min-width:641px) {
+        #wrapper {
+            width: calc(384px + 30vw);
+            margin-left: calc((35vw - 192px) - 20px - 4px);
+        }
+        #header_area {
+            width: calc(65vw + 192px - 37.5vw + 9px + 15px + 5px);
+            margin-left: calc(37.5vw);
+
+            height: 60px;
+        }
+
+        #header_title {
+            width: 25vw;
+            font-size: calc(13px + 1.40625vw);
+            border-radius: 12px 12px 0px 0px;
+        }
+
+        .switch {
+            width: 180px;
+            aspect-ratio: 4 / 1;
+        }
+        
+        .english {
+            top: 9px;
+            font-size: 24px;
+        }
+
+        .chinese {
+            font-size: 21px;
+            top:8px;
+        }
+    }
+
+    /* Large PC */
+    @media all and (min-width:1920px) {
+        #wrapper {
+            width: 50vw;
+            margin-left: calc(25vw - 20px - 5px - 4px);
+        }
+
+        #header_area {
+            width: calc(37.5vw + 9px + 15px);
+            margin-left: calc(37.5vw);
+        }
+
+        #header_title {
+            font-size: 40px;
+        }
+
+        /*.switch {
+            width: 12vw;
+            
+        }
+
+        .english {
+            top: 0.5vw;
+            font-size: 1.08vw;
+        }
+
+        .chinese {
+            font-size: 0.98vw;
+            top: 0.35vw;
+        }*/
     }
 
     #main {
@@ -184,6 +304,7 @@
     .switch {
         display: inline-block;
         position: relative;
+        
     }
 
 
@@ -200,17 +321,13 @@
 
     .switch > span.english {
         left: 0;
-        top: 0.5vw;
         color: v-bind(toggleColor2);
-        font-size: 1.08vw;
         font-family: sans-serif;
     }
 
     .switch > span.chinese {
         right: 0;
         color: v-bind(toggleColor1);
-        font-size: 0.98vw;
-        top: 0.35vw;
         
     }
 
@@ -230,7 +347,7 @@
     }
 
     input.check-toggle-round-flat + label {
-        width: 6vw;
+        width: 100%;
         height: 100%;
         background-color: #b0b0b0;
         /*-webkit-border-radius: 60px;
