@@ -18,21 +18,25 @@
     })
 
     const headerText = computed(() => {
-        return props.language === "English" ? "How to Play" : "怎么玩";
+        return props.language === "English" ? "How to Play" : "玩法";
     })
 
     const bodyText1 = computed(() => {
         return props.language === "English" ? "Choose 3 of a kind to wipe them out!" : "三张相同的牌即可消除。";
     });
     const bodyText2 = computed(() => {
-        return props.language === "English" ? "Eliminate all cards to win!" : "如果你把牌都消除了，你就会赢。";
+        return props.language === "English" ? "Eliminate all cards to win!" : "如果你把牌都消除了，就赢了。";
     });
     const bodyText3 = computed(() => {
-        return props.language === "English" ? "Your hand can only hold 7 cards!" : "如果槽位都被填满了，你就会失败。";
+        return props.language === "English" ? "Your hand can only hold 7 cards!" : "如果槽位都被填满了，就失败了。";
     }); 
 
     const bodyFontSize = computed(() => {
-        return props.language === "English" ? "25px" : "22px";
+        return props.language === "English" ? "1.3125vw" : "1.155vw";
+    })
+
+    const buttonText = computed(() => {
+        return props.language === "English" ? "Start Game" : "开始";
     })
     
 </script>
@@ -42,7 +46,7 @@
     <div class="modal-backdrop">
       <div class="modal">
         <header class="modal-header">
-            {{ headerText }}
+            <span>{{ headerText }}</span>
 
             <div class="switch">
                 <input id="language-toggle" class="check-toggle check-toggle-round-flat" 
@@ -71,7 +75,7 @@
             class="btn-start"
             @click="startGame"
           >
-            Start Game
+            {{ buttonText }}
           </button>
         </footer>
       </div>
@@ -99,11 +103,28 @@
     overflow-x: auto;
     display: flex;
     flex-direction: column;
-    border-radius: 25px;
-    padding: 0 20px;
-    border: 5px solid black;
-    outline: 7px solid darkgray;
+    border-radius: calc(13px + 0.625vw); /*15px*25px;*/
+    padding: 0 calc(8px + 0.625vw);/*20*10px; */
+    border: /*5*/3px solid black;
+    outline: /*7*/5px solid darkgray;
+    width: calc(183px + 11.5625vw);
   }
+
+  /*@media all and (min-width:1024px) {
+    .modal {
+        width: 21vw;
+    }
+    
+  }
+
+  @media all and (min-width:600px) {
+    .modal {
+        width: 40vw;
+    }
+    
+  } */
+
+
 
   .modal-header,
   .modal-footer {
@@ -115,10 +136,12 @@
     border-bottom: 1px solid #8b6d9c;
     color: #272744;
     font-weight: 400;
-    font-size: 28px;
-    padding: 15px 0;
+    font-size: calc(26px + 0.625vw);
+    padding: calc(9px + 0.3125vw) 0; /*15*10px 0;*/
 
     justify-content: space-between;
+
+    height: calc(31px + 0.625vw);
 
   }
 
@@ -132,20 +155,21 @@
 
   .modal-body {
     position: relative;
-    padding-bottom: 40px;
-    padding-top: 20px;
-    font-size: v-bind('bodyFontSize');
-    width: 400px;
+    padding-bottom: calc(10px + 1.5625vw);/*4015px;*/
+    padding-top: calc(8px + 0.625vw); /*20*10px;*/
+    /*font-size: v-bind('bodyFontSize');*/
+    font-size: calc(11.2px + 0.71875vw);
+    
   }
 
   .btn-start {
     color: #f0f3eb;
     background: #8b6d9c;
     border: 1px solid #8b6d9c;
-    border-radius: 30px;
+    border-radius: calc(24px + 0.3125vw);/*30*25*/
     width: 50%;
-    font-size: 20px;
-    padding: 12px 0;
+    font-size: calc(16.4px + 0.1875vw); /*20*17px;*/
+    padding: calc(7.2px + 0.25vw) /*12*8px*/ 0;
     
   }
 
@@ -156,9 +180,10 @@
   .switch {
         display: inline-block;
         position: relative;
-        height: 1.7vw;
         border: 2px solid #494d7e;
         background-color: #494d7e;
+        width: 30%;
+        aspect-ratio: 5 / 1;
     }
 
 
@@ -175,17 +200,17 @@
 
     .switch > span.english {
         left: 0;
-        top: 0.4vw;
+        top: calc(5.5px + 0.18vw);
         color: v-bind(toggleColor2);
-        font-size: 0.86vw;
+        font-size: calc(12.5px + 0.55vw);
         font-family: sans-serif;
     }
 
     .switch > span.chinese {
         right: 0;
         color: v-bind(toggleColor1);
-        font-size: 0.8vw;
-        top: 0.35vw;
+        top: calc(4px - 0.05vw);
+        font-size: calc(12.5px + 0.55vw);
         
     }
 
@@ -205,7 +230,7 @@
     }
 
     input.check-toggle-round-flat + label {
-        width: 6vw;
+        width: 100%;
         height: 100%;
         background-color: #494d7e;
         /*-webkit-border-radius: 60px;
