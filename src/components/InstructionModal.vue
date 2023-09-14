@@ -1,6 +1,8 @@
 <!-- State/Logic (JS-Like) -->
 <script setup>
     import { ref, computed } from 'vue';
+
+
     const props = defineProps({
         win: Boolean,
         language: String
@@ -153,7 +155,7 @@
   }
 
   .modal-header > span {
-    font-family: 'Times New Roman', Times, serif;
+    font-family: 'Times Custom', Times, serif;
   }
 
   .modal-footer {
