@@ -80,7 +80,10 @@
         <div v-if="!isCollapsed" class="root__card noselect"
             :class="bgClass, {selected: isSelected, collapsed: isCollapsed, covered: isCovered }"
             @click="select">
-            <img :src="props.uri" :alt="`${props.name} logo`" />
+            <div class="img_container">
+                <img :src="props.uri" :alt="`${props.name} logo`" />
+            </div>
+            
             <Transition name="overlay">
                 <div v-if="isCovered" class="card_overlay"></div>
             </Transition>
@@ -92,7 +95,8 @@
 <style scoped>
     .root__card {
         width: v-bind('size');
-        aspect-ratio: 1 / 1;
+        height: fit-content;
+        
         border-radius: v-bind('borderRadius');
         border-bottom: v-bind('borderSize') solid black;
         border-right: v-bind('borderSize') solid black;
@@ -102,10 +106,21 @@
         padding: v-bind('paddingSize');
     }
 
-    .root__card > img {
+    .img_container {
+        width: 100%;
+        padding-top: 100%;
+        position: relative;
+    }
+
+    .img_container > img {
         width: 100%;
         height: 100%;
         display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
         pointer-events: none;
     }
 
@@ -139,6 +154,10 @@
     .selected {
         bottom: 0;
         transform: translateY(-0.6vw);
+        -webkit-transform: translateY(-0.6vw);
+        -moz-transform: translateY(-0.6vw);
+        -ms-transform: translateY(-0.6vw);
+        -o-transform: translateY(-0.6vw);
         left: calc(v-bind('props.selectedIndex * totalSize + 17.38') * 1% + 0.6vw - 0.3vw);
         transition: all 0.5s;
         pointer-events: none;
